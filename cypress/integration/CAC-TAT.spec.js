@@ -25,4 +25,19 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
     cy.get(".success").should("not.visible");
   });
+
+  it("Should display an error message when submitting the form with an email with invalid formatting", () => {
+    cy.get("#firstName").type("Name");
+    cy.get("#lastName").type("Last Name");
+    cy.get("#email").type("myemail");
+    cy.get("#open-text-area").type(
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, eaque, qui rem dolor beatae excepturi expedita obcaecati ex odit illum, error labore earum dolorum cum molestiae dignissimos nostrum. Quaerat, sequi!",
+      { delay: 0 }
+    );
+
+    cy.get(".button").click();
+
+    cy.get(".error").should("be.visible");
+    cy.get(".error").should("not.visible");
+  });
 });
