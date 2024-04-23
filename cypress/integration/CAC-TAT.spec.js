@@ -40,4 +40,8 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get(".error").should("be.visible");
     cy.get(".error").should("not.visible");
   });
+
+  it("Should keep the phone field empty if a non-numeric value is entered.", () => {
+    cy.get("#phone").type("my phone").should("not.have.text");
+  });
 });
