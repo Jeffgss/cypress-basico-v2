@@ -62,4 +62,27 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get(".error").should("be.visible");
     cy.get(".error").should("not.visible");
   });
+
+  it("Should fill in and clear the name, surname, email and telephone fields.", () => {
+    cy.get("#firstName")
+      .type("Name")
+      .should("have.value", "Name")
+      .clear()
+      .should("have.value", "");
+    cy.get("#lastName")
+      .type("Last Name")
+      .should("have.value", "Last Name")
+      .clear()
+      .should("have.value", "");
+    cy.get("#email")
+      .type("email@email.com")
+      .should("have.value", "email@email.com")
+      .clear()
+      .should("have.value", "");
+    cy.get("#phone")
+      .type("123456789")
+      .should("have.value", "123456789")
+      .clear()
+      .should("have.value", "");
+  });
 });
