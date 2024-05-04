@@ -85,4 +85,11 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .clear()
       .should("have.value", "");
   });
+
+  it("Should display an error message when submitting the form without filling in the required fields.", () => {
+    cy.get(".button").click();
+
+    cy.get(".error").should("be.visible");
+    cy.get(".error").should("not.visible");
+  });
 });
