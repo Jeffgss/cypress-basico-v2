@@ -44,4 +44,22 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   it("Should keep the phone field empty if a non-numeric value is entered.", () => {
     cy.get("#phone").type("my phone").should("not.have.text");
   });
+
+  it("Should display an error message when the phone number becomes mandatory but is not filled in before submitting the form.", () => {
+    cy.get("#firstName").type("Name");
+    cy.get("#lastName").type("Last Name");
+    cy.get("#email").type("myemail");
+
+    cy.get("#phone-checkbox").click();
+
+    cy.get("#open-text-area").type(
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, eaque, qui rem dolor beatae excepturi expedita obcaecati ex odit illum, error labore earum dolorum cum molestiae dignissimos nostrum. Quaerat, sequi!",
+      { delay: 0 }
+    );
+
+    cy.get(".button").click();
+
+    cy.get(".error").should("be.visible");
+    cy.get(".error").should("not.visible");
+  });
 });
