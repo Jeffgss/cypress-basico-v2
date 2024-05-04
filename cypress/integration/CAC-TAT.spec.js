@@ -92,4 +92,14 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get(".error").should("be.visible");
     cy.get(".error").should("not.visible");
   });
+
+  it("Should submit the form successfully using a custom command.", () => {
+    cy.fillMandatoryFieldsAndSubmit();
+
+    cy.get(".success")
+      .should("be.visible")
+      .should("contain", "Mensagem enviada com sucesso.");
+
+    cy.get(".success").should("not.visible");
+  });
 });
