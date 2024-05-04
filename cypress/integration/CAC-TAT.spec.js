@@ -114,4 +114,10 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   it("Should select a product (Blog) by its index.", () => {
     cy.get("#product").select(1).should("have.value", "blog");
   });
+
+  it("Should check the type of service (Feedback).", () => {
+    cy.get('input[type="radio"]')
+      .check("feedback")
+      .should("have.value", "feedback");
+  });
 });
