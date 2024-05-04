@@ -120,4 +120,11 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .check("feedback")
       .should("have.value", "feedback");
   });
+
+  it("Should check each type of service.", () => {
+    cy.get('input[type="radio"]').each(($radio) => {
+      cy.wrap($radio).check();
+      cy.wrap($radio).should("be.checked");
+    });
+  });
 });
